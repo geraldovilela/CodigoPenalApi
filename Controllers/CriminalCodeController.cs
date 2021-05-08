@@ -21,5 +21,18 @@ namespace CodigoPenalApi.Controllers
 
             return null;
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                return _CriminalCodeService.Delete(id);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
     }
 }

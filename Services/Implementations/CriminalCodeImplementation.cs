@@ -1,6 +1,7 @@
 ﻿using CodigoPenalApi.Controllers;
 using CodigoPenalApi.Data;
 using CodigoPenalApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,26 @@ namespace CodigoPenalApi.Services.Implementations
             }
         }
 
-        public CriminalCode Delete(int id)
+        public IActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _dbContext.CriminalCodes.Find(id);
+                if (result != null)
+                {
+                    _dbContext.Remove(result);
+                    _dbContext.SaveChanges();
+                    return null;
+                }
+                return null;                 
+               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            };
+            
         }
 
         public List<CriminalCode> FindAll()
